@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      Welcome to the wedding ceremony of Arya and Akshaj
+      Welcome to my react playground !
     </div>
   );
 }
