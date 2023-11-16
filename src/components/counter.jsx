@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Counters from "./counters";
 
 class Counter extends Component {
-  state = {
-    count: this.props.counter.value,
-    // tags: ["tag1", "tag2", "tag3"],
-  };
+  // state = {
+  //   count: this.props.counter.value,
+  // tags: ["tag1", "tag2", "tag3"],
+  // };
   styles = {
     fontSize: 13,
     fontWeight: "bold",
@@ -25,13 +25,13 @@ class Counter extends Component {
           {this.formatCount()}
         </span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm m-2"
         >
           Increment
         </button>
         <button
-          onClick={this.handleDecrement}
+          onClick={() => this.props.onDecrement(this.props.counter)}
           className="btn btn-secondary btn-sm m-2"
         >
           Decrement
@@ -48,12 +48,13 @@ class Counter extends Component {
   }
 
   formatCount() {
-    return this.state.count === 0 ? "Zero" : this.state.count;
+    return this.props.counter.value === 0 ? "Zero" : this.props.counter.value;
   }
 
   getBadgeClasses() {
     let classes = "badge m-2 ";
-    classes += this.state.count === 0 ? "badge-warning" : "badge-primary";
+    classes +=
+      this.props.counter.value === 0 ? "badge-warning" : "badge-primary";
     return classes;
   }
 
@@ -68,16 +69,17 @@ class Counter extends Component {
   //     );
   //   }
 
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
-    // console.log("button pressed");
-  };
+  // handleIncrement = () => {
+  //   this.setState({ count: this.state.count + 1 });
+  // console.log("button pressed");
+  // };
+  //since we don't have the local state in this component, we are raising events and handling them in the parent component(just like handleDelete)
 
-  handleDecrement = () => {
-    if (this.state.count > 0) {
-      this.setState({ count: this.state.count - 1 });
-    }
-  };
+  // handleDecrement = () => {
+  //   if (this.state.count > 0) {
+  //     this.setState({ count: this.state.count - 1 });
+  //   }
+  // };
 }
 
 export default Counter;
